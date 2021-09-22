@@ -1,10 +1,11 @@
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def driver():
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-    yield driver
-    driver.quit()
+    options = Options()
+    # options.add_argument("--headless")
+    return webdriver.Chrome(ChromeDriverManager().install(), options=options)

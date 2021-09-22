@@ -20,6 +20,7 @@ class BasePage:
 
     def close_tab(self):
         self.driver.close()
+        self.driver.switch_to_window(self.driver.window_handles[0])
 
     def get_element_text(self, locator):
         element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
