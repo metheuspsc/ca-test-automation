@@ -4,9 +4,6 @@ from config.config import TestData
 
 """
 Challenge Url = https://www.consumeraffairs.com/recalls/liberty-mountain-recalls-birdie-belay-devices-032921.html
-- Verify disclaimer
-- Verify footer text
-- Assert social links work
 - Assert redirect of "Find my match" box
 - Verify links for first and last listed "related news links"
 """
@@ -41,3 +38,15 @@ def test_facebook_share(recall_article_page):
     recall_article_page.switch_next_tab()
     assert TestData.FACEBOOK_SHARER_URL in recall_article_page.driver.current_url
     recall_article_page.close_tab()
+
+
+def test_twitter_share(recall_article_page):
+    recall_article_page.click_twitter_share()
+    recall_article_page.switch_next_tab()
+    assert [text in recall_article_page.driver.current_url for text in TestData.TWITTER_SHARER_URL]
+    recall_article_page.close_tab()
+
+
+def test_email_share(recall_article_page):
+    href = recall_article_page.get_email_share_href()
+    assert TestData.EMAIL_SHARER_URL in href

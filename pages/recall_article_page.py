@@ -28,3 +28,9 @@ class RecallArticlePage(BasePage):
 
     def click_facebook_share(self):
         self.click_and_wait_redirect(self.FACEBOOK_SHARE)
+
+    def click_twitter_share(self):
+        self.click_and_wait_redirect(self.TWITTER_SHARE)
+
+    def get_email_share_href(self):
+        return self.get_href(self.EMAIL_SHARE)

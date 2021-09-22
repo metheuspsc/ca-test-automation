@@ -25,3 +25,7 @@ class BasePage:
     def get_element_text(self, locator):
         element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
         return element.text
+
+    def get_href(self,locator):
+        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
+        return element.get_attribute('href')
