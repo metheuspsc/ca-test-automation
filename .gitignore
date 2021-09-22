@@ -1,0 +1,143 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pg_data/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+**_logs/
+**.log
+archived_logs/
+latest_logs/
+dsemu/
+.report.json
+
+# Translations
+*.mo
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Environments
+.env
+.venv
+env/
+envs/
+venv/
+ENV/
+env.bak/
+venv.bak/
+vue/.env*
+!vue/.env.default
+vue/config/config.local.json
+.local*.env
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+#VS Code
+.vscode/
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+#JetBrains
+.idea/
+
+# Flake Debug
+debug/coverage_data
+!debug/coverage_data/.gitkeep
+debug/flake_data
+!debug/flake_data/.gitkeep
+debug/pytest_report.html
+
+#Chrome Driver
+*chromedriver.exe
+
+#Node directory
+node_modules
+
+performance/gatling_app
+
+#Testing env variables
+tests/envs
+tests/unit/platforms/bigcommerce/integration/fab_keys.json
+tests/unit/platforms/bigcommerce/integration/fab_prod_keys.json
+tests/unit/platforms/bigcommerce/integration/frontend_selenium_data.json
+tests/data/test_store.json
+
+#VS Code
+workspace.*
+
+#Misc
+data/cli_data
+
+# Run Files
+.run/
