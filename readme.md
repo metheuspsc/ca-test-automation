@@ -1,8 +1,22 @@
 # Consumer Affairs Test Automation Challenge
 
 > This is a automated test script for Consumer Affairs QA Engineer position challenge. 
-> It tests https://www.consumeraffairs.com/recalls/liberty-mountain-recalls-birdie-belay-devices-032921.html, 
-> using selenium and pytest
+> using selenium and pytest.
+
+## ✅ Challenge Requirements.
+URL to test: https://www.consumeraffairs.com/recalls/liberty-mountain-recalls-birdie-belay-devices-032921.html
+
+Required tests:
+- [x] Verify Disclaimer
+- [x] Verify Footer Text
+- [ ] Assert Social Links work
+- [ ] Assert "Find my match" redirects correctly
+- [ ] Verify first and last links on "related news links"
+
+## ✨ Assumptions
+
+There were no requirements or expected behaviours shared with me, so I assumed the correct
+behaviour is the current website behaviour.
 
 ## 💻 Get Started
 
@@ -30,5 +44,5 @@ $ ./venv/scripts/activate
 To run the tests use the following command:
 
 ```
-$ python -m tests
+$ pytest
 ```
