@@ -10,8 +10,8 @@ Required tests:
 - [x] Verify Disclaimer
 - [x] Verify Footer Text
 - [x] Assert Social Links work
-- [ ] Assert "Find my match" redirects correctly
-- [ ] Verify first and last links on "related news links"
+- [x] Assert "Find my match" redirects correctly
+- [x] Verify first and last links on "related news links"
 
 ## ✨ Assumptions
 
