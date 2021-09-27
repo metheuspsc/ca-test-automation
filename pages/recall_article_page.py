@@ -10,8 +10,11 @@ class RecallArticlePage(BasePage):
     FOOTER = (By.XPATH, "//div[@class='ca-ft__ctnt']//p")
     FACEBOOK_SHARE = (By.XPATH, "//a[@title='Share on Facebook']")
     TWITTER_SHARE = (By.XPATH, "//a[@title='Share on Twitter']")
+    RELATED_NEWS = (
+        By.CSS_SELECTOR,
+        "#sidebar > nav.h-sect--pad-2.h-coll-vert.article-links.related-links > a",
+    )
     EMAIL_SHARE = (By.XPATH, "//a[@title='Share via Email']")
-    LATEST_NEWS = (By.CLASS_NAME, "article-links")
     NEWS_CART = (By.CLASS_NAME, "ca-card")
     FIND_MY_MATCH_ZIP_INPUT = (By.XPATH, "//input[@name='zip']")
     FIND_MY_MATCH_ZIP_SUBMIT = (By.CLASS_NAME, "ca-mt-zip__btn")
@@ -49,3 +52,17 @@ class RecallArticlePage(BasePage):
     def close_modal(self):
         if self.driver.find_elements(self.CLOSE_MODAL[0], self.CLOSE_MODAL[1]):
             self.do_click(self.CLOSE_MODAL)
+
+    def get_related_news(self):
+        """Returns a list with the first and the last news on the latest news modal"""
+        related_news = self.driver.find_elements(
+            self.RELATED_NEWS[0], self.RELATED_NEWS[1]
+        )
+        if related_news:
+            if len(related_news) == 1:
+                return related_news[0].get_attribute("href")
+            return [
+                related_news[0].get_attribute("href"),
+                related_news[-1].get_attribute("href"),
+            ]
+        return None
