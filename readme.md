@@ -9,7 +9,7 @@ URL to test: https://www.consumeraffairs.com/recalls/liberty-mountain-recalls-bi
 Required tests:
 - [x] Verify Disclaimer
 - [x] Verify Footer Text
-- [ ] Assert Social Links work
+- [x] Assert Social Links work
 - [ ] Assert "Find my match" redirects correctly
 - [ ] Verify first and last links on "related news links"
 
