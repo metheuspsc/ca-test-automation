@@ -27,25 +27,20 @@ def test_footer_text(recall_article_page, test_data):
 def test_facebook_share(recall_article_page, test_data):
     """Asserts facebook share button's href is right."""
     assert (
-            test_data.FACEBOOK_SHARER_URL + recall_article_page.url
+            recall_article_page.expected_facebook_share_url
             == recall_article_page.get_facebook_share_href()
     )
 
 
 def test_twitter_share(recall_article_page, test_data):
     """Asserts twitter share button's href is right."""
-    href = recall_article_page.get_twitter_share_href()
-    title = recall_article_page.get_title()
-    assert (
-            f"{test_data.TWITTER_SHARER_URL}text={title}&via=ConsumerAffairs&url={recall_article_page.url}"
-            == href
-    )
+    assert (recall_article_page.expected_twitter_share_url == recall_article_page.get_twitter_share_href())
 
 
 def test_email_share(recall_article_page, test_data):
     """Asserts email share button's href is right."""
     assert (
-            test_data.EMAIL_SHARER_URL + recall_article_page.url
+            recall_article_page.expected_email_share_url
             == recall_article_page.get_email_share_href()
     )
 

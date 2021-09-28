@@ -7,19 +7,17 @@ from pages.browser import Tab
 class RecallArticlePage(BasePage):
     """Assumption: locators are inside the methods to simplify"""
 
-    CLOSE_MODAL = (By.XPATH, "//a[@class='ca-modal_close']")
-    FAQ_BTN = (By.XPATH, "//a[@aria-label='Learn more about us via our FAQ page']")
+    @property
+    def expected_twitter_share_url(self):
+        return f"{'https://twitter.com/intent/tweet/?'}text={self.get_title()}&via=ConsumerAffairs&url={self.url}"
 
-    FACEBOOK_SHARE = (By.XPATH, "//a[@title='Share on Facebook']")
-    TWITTER_SHARE = (By.XPATH, "//a[@title='Share on Twitter']")
-    RELATED_NEWS = (
-        By.CSS_SELECTOR,
-        "#sidebar > nav.h-sect--pad-2.h-coll-vert.article-links.related-links > a",
-    )
-    EMAIL_SHARE = (By.XPATH, "//a[@title='Share via Email']")
-    NEWS_CART = (By.CLASS_NAME, "ca-card")
-    FIND_MY_MATCH_ZIP_INPUT = (By.XPATH, "//input[@name='zip']")
-    FIND_MY_MATCH_ZIP_SUBMIT = (By.CLASS_NAME, "ca-mt-zip__btn")
+    @property
+    def expected_facebook_share_url(self):
+        return "https://www.facebook.com/sharer.php?u=" + self.url
+
+    @property
+    def expected_email_share_url(self):
+        return "mailto:?subject=Check this ConsumerAffairs News&body=Check out this news: " + self.url
 
     def get_disclaimer_text(self):
         locator = (By.CLASS_NAME, "js-discl")
@@ -34,32 +32,43 @@ class RecallArticlePage(BasePage):
         return self.browser.text(locator)
 
     def get_how_it_works_href(self):
-        return self.browser.get_href(self.FAQ_BTN)
+        locator = (By.XPATH, "//a[@aria-label='Learn more about us via our FAQ page']")
+        return self.browser.get_href(locator)
 
     def get_facebook_share_href(self):
-        return self.browser.get_href(self.FACEBOOK_SHARE)
+        locator = (By.XPATH, "//a[@title='Share on Facebook']")
+        return self.browser.get_href(locator)
 
     def get_twitter_share_href(self):
-        return self.browser.get_href(self.TWITTER_SHARE)
+        locator = (By.XPATH, "//a[@title='Share on Twitter']")
+        return self.browser.get_href(locator)
 
     def get_email_share_href(self):
-        return self.browser.get_href(self.EMAIL_SHARE)
+        locator = (By.XPATH, "//a[@title='Share via Email']")
+        return self.browser.get_href(locator)
 
     def fill_zip_code(self, zip_code):
-        return self.browser.do_send_keys(self.FIND_MY_MATCH_ZIP_INPUT, zip_code)
+        locator = (By.XPATH, "//input[@name='zip']")
+        return self.browser.do_send_keys(locator, zip_code)
 
     def click_find_my_match(self):
-        self.browser.click_and_wait_redirect(self.FIND_MY_MATCH_ZIP_SUBMIT)
+        locator = (By.CLASS_NAME, "ca-mt-zip__btn")
+        self.browser.click_and_wait_redirect(locator)
         return Tab(self.browser)
 
     def close_modal(self):
-        if self.browser.find_elements(self.CLOSE_MODAL[0], self.CLOSE_MODAL[1]):
-            self.browser.do_click(self.CLOSE_MODAL)
+        locator = (By.XPATH, "//a[@class='ca-modal_close']")
+        if self.browser.find_elements(locator[0], locator[1]):
+            self.browser.do_click(locator)
 
     def get_related_news(self):
         """Returns a list with the first and the last news on the latest news modal"""
+        locator = (
+            By.CSS_SELECTOR,
+            "#sidebar > nav.h-sect--pad-2.h-coll-vert.article-links.related-links > a",
+        )
         related_news = self.browser.find_elements(
-            self.RELATED_NEWS[0], self.RELATED_NEWS[1]
+            locator[0], locator[1]
         )
         if related_news:
             if len(related_news) == 1:
