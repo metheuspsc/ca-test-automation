@@ -63,13 +63,9 @@ class RecallArticlePage(BasePage):
 
     def get_related_news(self):
         """Returns a list with the first and the last news on the latest news modal"""
-        locator = (
-            By.CSS_SELECTOR,
-            "#sidebar > nav.h-sect--pad-2.h-coll-vert.article-links.related-links > a",
-        )
-        related_news = self.browser.find_elements(
-            locator[0], locator[1]
-        )
+        locator = (By.CSS_SELECTOR, "#sidebar > nav.h-sect--pad-2.h-coll-vert.article-links.related-links")
+        related_news_box = self.browser.wait_for_element(locator)
+        related_news = related_news_box.find_elements(By.CSS_SELECTOR, "a")
         if related_news:
             if len(related_news) == 1:
                 return related_news[0].get_attribute("href")
@@ -77,4 +73,4 @@ class RecallArticlePage(BasePage):
                 related_news[0].get_attribute("href"),
                 related_news[-1].get_attribute("href"),
             ]
-        return None
+        return []

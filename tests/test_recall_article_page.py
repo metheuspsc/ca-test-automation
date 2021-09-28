@@ -49,20 +49,22 @@ def test_find_my_match(browser, recall_article_page, test_data):
     """Asserts find my match redirects correctly"""
     recall_article_page.fill_zip_code(test_data.ZIP_CODE)
     with recall_article_page.click_find_my_match() as newtab:
-        assert (
-                newtab.current_url
-                == test_data.FIND_MY_MATCH_URL + test_data.ZIP_CODE
-        )
+        assert newtab.current_url in [
+            test_data.FIND_MY_MATCH_WARRANTY_URL + test_data.ZIP_CODE,
+            test_data.FIND_MY_MATCH_ALARM_URL + test_data.ZIP_CODE,
+        ]
 
 
 def test_related_news(browser, recall_article_page, test_data):
     """Asserts the first and last links on the related news modal redirect to a working article"""
-    for news in recall_article_page.get_related_news():
+    related_news = recall_article_page.get_related_news()
+    if not related_news:
+        pytest.skip("This article has no related news")
+    for news in related_news:
         recall_article_page.load(news)
         test_disclaimer(recall_article_page, test_data)
         test_footer_text(recall_article_page, test_data)
         test_facebook_share(recall_article_page, test_data)
         test_email_share(recall_article_page, test_data)
         test_twitter_share(recall_article_page, test_data)
-    else:
-        pytest.skip("This article has no related news")
+

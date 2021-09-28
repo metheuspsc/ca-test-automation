@@ -13,6 +13,10 @@ class Browser:
     def __getattr__(self, item):
         return getattr(self.driver, item)
 
+    def wait_for_element(self, locator):
+        return WebDriverWait(self.driver, 5).until(
+            EC.visibility_of_element_located(locator))
+
     def do_click(self, locator):
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(locator)).click()
 
