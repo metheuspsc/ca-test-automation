@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
-from pages.browser import Tab
 
 
 class RecallArticlePage(BasePage):
@@ -53,8 +52,7 @@ class RecallArticlePage(BasePage):
 
     def click_find_my_match(self):
         locator = (By.CLASS_NAME, "ca-mt-zip__btn")
-        self.browser.click_and_wait_redirect(locator)
-        return Tab(self.browser)
+        return self.browser.click_and_wait_redirect(locator)
 
     def close_modal(self):
         locator = (By.XPATH, "//a[@class='ca-modal_close']")

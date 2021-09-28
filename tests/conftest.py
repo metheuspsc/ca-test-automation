@@ -22,6 +22,6 @@ def test_data():
 @pytest.fixture(scope="session")
 def browser():
     options = Options()
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     return Browser(driver)

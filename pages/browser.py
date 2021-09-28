@@ -38,6 +38,7 @@ class Browser:
         WebDriverWait(self.driver, 5).until(
             lambda driver: len(driver.window_handles) > 1
         )
+        return Tab(self)
 
     def text(self, locator):
         element = WebDriverWait(self.driver, 5).until(
@@ -53,17 +54,24 @@ class Browser:
         return unquote(href)
 
 
-class Tab:
-    def __init__(self, browser):
-        self.driver = browser.driver
+class Tab(Browser):
 
-    def __getattr__(self, item):
-        return getattr(self.driver, item)
+    def current_tab_index(self):
+        cur = self.driver.current_window_handle
+        return self.driver.window_handles.index(cur)
+
+    def next_window(self, idx):
+        return self.driver.window_handles[idx + 1]
+
+    def previous_window(self, idx):
+        return self.driver.window_handles[idx - 1]
 
     def __enter__(self):
-        self.driver.switch_to_window(self.driver.window_handles[1])
+        idx = self.current_tab_index()
+        self.driver.switch_to_window(self.next_window(idx))
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        idx = self.current_tab_index()
         self.driver.close()
-        self.driver.switch_to_window(self.driver.window_handles[0])
+        self.driver.switch_to_window(self.previous_window(idx))

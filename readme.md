@@ -20,9 +20,9 @@ behaviour is the current website behaviour.
 
 >### Classes and Fixtures:
 >>#### TestData:
->>* SimpleNamespace containing the test data, could be easily replaced for a factory to implement multiple scenarios.
+>>* SimpleNamespace containing the test data, could be easily replaced by a factory to implement multiple scenarios.
 >>#### Browser:
->>* This class encapsulates the common methods for browser interaction.
+>>* This class is a high level adapter for common browser methods.
 >>#### RecallArticlePage:
 >>* Class for higher level test interactions with the article page. 
 >>* The locators are inside the methods to simplify maintenance since there's no repetition on locators.
@@ -48,8 +48,9 @@ Before starting you need the following dependencies:
 Windows:
 
 ```
-git clone https://github.com/metheuspsc/ca-test-automation.git
+mkdir <project path>
 cd <project path>
+git clone https://github.com/metheuspsc/ca-test-automation.git
 python -m venv venv
 ./venv/scripts/activate
 pip install -r requirements.txt
